@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Feb</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="did_you_know">Did you know?</string>
+    <string name="random_quote">Random quote</string>
+    <string name="temp_quote">You can use this simple code</string>
+</resources>
