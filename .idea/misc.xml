@@ -5,7 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29583333333333334" />
+        <entry key="app/src/main/res/layout/fragment_quote_logs.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_quotes.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/list_item_quote_log.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1025" />
       </map>
     </option>

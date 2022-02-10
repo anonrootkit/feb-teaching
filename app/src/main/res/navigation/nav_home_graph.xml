@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home_graph"
+    app:startDestination="@id/quotes">
+
+    <fragment
+        android:id="@+id/quotes"
+        android:name="com.example.feb.ui.home.quote.Quotes"
+        android:label="fragment_quotes"
+        tools:layout="@layout/fragment_quotes" >
+        <action
+            android:id="@+id/action_quotes_to_quoteLogs"
+            app:destination="@id/quoteLogs" />
+    </fragment>
+    <fragment
+        android:id="@+id/quoteLogs"
+        android:name="com.example.feb.ui.home.logs.QuoteLogs"
+        android:label="fragment_quote_logs"
+        tools:layout="@layout/fragment_quote_logs" />
+</navigation>

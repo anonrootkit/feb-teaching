@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:id="@+id/quote_log_container"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="12 Mar, 2022"
+        android:id="@+id/date"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAppearance="?textAppearanceOverline"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/lorem/random"
+        android:id="@+id/quote"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textAppearance="?textAppearanceBody1"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

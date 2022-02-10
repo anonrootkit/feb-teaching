@@ -2,6 +2,7 @@ package com.example.feb.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.fragment.NavHostFragment
 import com.example.feb.R
 import com.example.feb.databinding.ActivityHomeBinding
 
