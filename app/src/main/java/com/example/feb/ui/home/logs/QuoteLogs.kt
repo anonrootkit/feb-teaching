@@ -15,6 +15,9 @@ import com.example.feb.databinding.FragmentQuoteLogsBinding
 import com.example.feb.domain.repo.QuoteLogsRepository
 import com.example.feb.ui.home.logs.adapter.QuoteLogsAdapter
 import com.example.feb.ui.viewmodels.QuoteViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class QuoteLogs : Fragment(R.layout.fragment_quote_logs) {
@@ -64,12 +67,13 @@ class QuoteLogs : Fragment(R.layout.fragment_quote_logs) {
 
         })
 
-        quoteViewModel.getLogs().observe(viewLifecycleOwner) {
-            if (!it.isNullOrEmpty()){
-                quoteLogsAdapter.submitList(it)
+        lifecycleScope.launch {
+            quoteViewModel.getLogs().collect {
+                if (!it.isNullOrEmpty()){
+                    quoteLogsAdapter.submitList(it)
+                }
             }
         }
-
     }
 
 }
