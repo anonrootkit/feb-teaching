@@ -10,7 +10,8 @@ import com.example.feb.data.db.entities.QuoteLog
 import com.example.feb.databinding.ListItemQuoteLogBinding
 
 class QuoteLogsAdapter(
-    private val inflater: LayoutInflater
+    private val inflater: LayoutInflater,
+    private val onQuoteLongClicked : (QuoteLog) -> Unit
 ) : ListAdapter<QuoteLog, QuoteLogsAdapter.QuoteLogViewHolder>(DiffUtilCallback) {
 
     object DiffUtilCallback : DiffUtil.ItemCallback<QuoteLog>() {
@@ -24,14 +25,21 @@ class QuoteLogsAdapter(
 
     }
 
-    class QuoteLogViewHolder(
+    inner class QuoteLogViewHolder(
         private val binding : ListItemQuoteLogBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(log : QuoteLog) {
-            binding.date.text = "10 Feb, 2022"
-            binding.quote.text = log.quote
-            binding.quoteLogContainer.setBackgroundColor(Color.parseColor(log.color))
+            binding.quoteLog = log
+            binding.executePendingBindings()
+        }
+
+        init {
+            binding.quoteLogContainer.setOnLongClickListener {
+                val log = binding.quoteLog!!
+                onQuoteLongClicked(log)
+                true
+            }
         }
 
     }

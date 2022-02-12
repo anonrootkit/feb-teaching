@@ -18,10 +18,14 @@ class QuoteLogsRepository(private val database: AppDatabase) {
         }
     }
 
-    suspend fun getLogs() = database.quoteLogsDao().getAllQuoteLogs()
+    fun getLogs() = database.quoteLogsDao().getAllQuoteLogs()
 
     suspend fun insertLog(log : QuoteLog) {
         database.quoteLogsDao().insertQuoteLog(log)
+    }
+
+    suspend fun updateLog(log : QuoteLog) {
+        database.quoteLogsDao().updateQuoteLog(log)
     }
 
     suspend fun deleteLogs() = database.quoteLogsDao().deleteQuoteLogs()

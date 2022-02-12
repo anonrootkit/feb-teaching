@@ -19,7 +19,13 @@ class QuoteViewModel(
         }
     }
 
-    suspend fun getLogs() = quoteLogsRepository.getLogs()
+    fun updateLog(log : QuoteLog) {
+        viewModelScope.launch {
+            quoteLogsRepository.updateLog(log)
+        }
+    }
+
+    fun getLogs() = quoteLogsRepository.getLogs()
 
 
     class Factory(private val quoteLogsRepository: QuoteLogsRepository)

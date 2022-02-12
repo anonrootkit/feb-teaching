@@ -3,9 +3,11 @@ package com.example.feb.ui.home.logs
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feb.R
@@ -22,7 +24,12 @@ class QuoteLogs : Fragment(R.layout.fragment_quote_logs) {
 
     private val quoteLogsAdapter by lazy {
         QuoteLogsAdapter(
-            inflater = layoutInflater
+            inflater = layoutInflater,
+            onQuoteLongClicked = { log ->
+                findNavController().navigate(R.id.action_quoteLogs_to_modifyLog, Bundle().apply {
+                    putParcelable("quoteLog", log)
+                })
+            }
         )
     }
 
@@ -30,6 +37,7 @@ class QuoteLogs : Fragment(R.layout.fragment_quote_logs) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentQuoteLogsBinding.bind(view)
+        binding.lifecycleOwner = this
 
         quoteViewModel = ViewModelProvider(
             this,
@@ -56,10 +64,12 @@ class QuoteLogs : Fragment(R.layout.fragment_quote_logs) {
 
         })
 
-        lifecycleScope.launch {
-            val quotes = quoteViewModel.getLogs()
-            quoteLogsAdapter.submitList(quotes)
+        quoteViewModel.getLogs().observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()){
+                quoteLogsAdapter.submitList(it)
+            }
         }
+
     }
 
 }

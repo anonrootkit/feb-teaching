@@ -18,5 +18,17 @@
         android:id="@+id/quoteLogs"
         android:name="com.example.feb.ui.home.logs.QuoteLogs"
         android:label="fragment_quote_logs"
-        tools:layout="@layout/fragment_quote_logs" />
+        tools:layout="@layout/fragment_quote_logs" >
+        <action
+            android:id="@+id/action_quoteLogs_to_modifyLog"
+            app:destination="@id/modifyLog" />
+    </fragment>
+    <dialog
+        android:id="@+id/modifyLog"
+        android:name="com.example.feb.ui.home.modify.ModifyLog"
+        android:label="ModifyLog" >
+        <argument
+            android:name="quoteLog"
+            app:argType="com.example.feb.data.db.entities.QuoteLog" />
+    </dialog>
 </navigation>

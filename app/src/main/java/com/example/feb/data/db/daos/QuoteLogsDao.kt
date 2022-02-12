@@ -1,9 +1,7 @@
 package com.example.feb.data.db.daos
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.example.feb.data.db.entities.QuoteLog
 
 @Dao
@@ -12,7 +10,10 @@ interface QuoteLogsDao {
     suspend fun insertQuoteLog(log : QuoteLog)
 
     @Query("SELECT * FROM quote_logs ORDER BY time ASC")
-    suspend fun getAllQuoteLogs() : List<QuoteLog>
+    fun getAllQuoteLogs() : LiveData<List<QuoteLog>>
+
+    @Update
+    suspend fun updateQuoteLog(quoteLog: QuoteLog)
 
     @Query("DELETE FROM quote_logs")
     suspend fun deleteQuoteLogs()
