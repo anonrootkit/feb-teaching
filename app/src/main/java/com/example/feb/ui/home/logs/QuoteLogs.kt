@@ -52,21 +52,6 @@ class QuoteLogs : Fragment(R.layout.fragment_quote_logs) {
             layoutManager = LinearLayoutManager(requireContext())
         }
 
-        binding.logsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE){
-                    val index =
-                        (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                    val color =
-                        if (quoteLogsAdapter.currentList.isNotEmpty()) quoteLogsAdapter.currentList[index]?.color else null
-                    if (color != null) {
-                        requireActivity().window.statusBarColor = Color.parseColor(color)
-                    }
-                }
-            }
-
-        })
-
         lifecycleScope.launch {
             quoteViewModel.getLogs().collect {
                 if (!it.isNullOrEmpty()){

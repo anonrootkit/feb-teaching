@@ -48,7 +48,6 @@ class Quotes : Fragment(R.layout.fragment_quotes) {
 
         binding.quote.text = randomQuote
         binding.parent.setBackgroundColor(randomColor)
-        requireActivity().window.statusBarColor = randomColor
 
         val log = QuoteLog(time = System.currentTimeMillis(), color = color, quote = randomQuote)
         quotesViewModel.insertLog(log)
