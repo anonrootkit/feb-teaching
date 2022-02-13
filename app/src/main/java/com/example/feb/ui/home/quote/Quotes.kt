@@ -37,7 +37,7 @@ class Quotes : Fragment(R.layout.fragment_quotes) {
     }
 
     private fun navigateToQuoteLogs() : Boolean {
-        findNavController().navigate(R.id.action_quotes_to_quoteLogsAsPage)
+        findNavController().navigate(R.id.action_quotes_to_quoteLogsContainer)
         return true
     }
 

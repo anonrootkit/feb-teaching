@@ -11,39 +11,13 @@
         android:label="fragment_quotes"
         tools:layout="@layout/fragment_quotes" >
         <action
-            android:id="@+id/action_quotes_to_quoteLogsAsPage"
-            app:destination="@id/quoteLogsAsPage" />
-        <action
-            android:id="@+id/action_quotes_to_quoteLogsAsList"
-            app:destination="@id/quoteLogsAsList" />
+            android:id="@+id/action_quotes_to_quoteLogsContainer"
+            app:destination="@id/quoteLogsContainer" />
     </fragment>
     <fragment
-        android:id="@+id/quoteLogsAsList"
-        android:name="com.example.feb.ui.home.logs.QuoteLogsAsList"
-        android:label="fragment_quote_logs"
-        tools:layout="@layout/fragment_quote_logs_as_list" >
-        <action
-            android:id="@+id/action_quoteLogsAsList_to_modifyLog"
-            app:destination="@id/modifyLog" />
-    </fragment>
-    <dialog
-        android:id="@+id/modifyLog"
-        android:name="com.example.feb.ui.home.modify.ModifyLog"
-        android:label="ModifyLog"
-        tools:layout="@layout/fragment_modify_log"
-        >
-        <argument
-            android:name="quoteLog"
-            app:argType="com.example.feb.data.db.entities.QuoteLog" />
-    </dialog>
-    <fragment
-        android:id="@+id/quoteLogsAsPage"
-        android:name="com.example.feb.ui.home.logs.QuoteLogsAsPage"
-        android:label="QuoteLogsDuplicate"
-        tools:layout="@layout/fragment_quote_logs_as_page"
-        >
-        <action
-            android:id="@+id/action_quoteLogsAsPage_to_modifyLog"
-            app:destination="@id/modifyLog" />
-    </fragment>
+        android:id="@+id/quoteLogsContainer"
+        android:name="com.example.feb.ui.home.logs.QuoteLogsContainer"
+        android:label="QuoteLogsContainer"
+        tools:layout="@layout/fragment_quote_logs_container"
+        />
 </navigation>

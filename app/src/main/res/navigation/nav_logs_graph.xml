@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_logs_graph"
+    app:startDestination="@id/quoteLogsAsList">
+    <dialog
+        android:id="@+id/modifyLog"
+        android:name="com.example.feb.ui.home.modify.ModifyLog"
+        android:label="ModifyLog"
+        tools:layout="@layout/fragment_modify_log"
+        />
+    <fragment
+        android:id="@+id/quoteLogsAsPage"
+        android:name="com.example.feb.ui.home.logs.QuoteLogsAsPage"
+        android:label="QuoteLogsAsPage"
+        tools:layout="@layout/fragment_quote_logs_as_page"
+        >
+        <action
+            android:id="@+id/action_quoteLogsAsPage_to_modifyLog"
+            app:destination="@id/modifyLog" />
+        <action
+            android:id="@+id/action_quoteLogsAsPage_to_quoteLogsAsList"
+            app:destination="@id/quoteLogsAsList"
+            app:popUpTo="@id/quoteLogsAsPage"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/quoteLogsAsList"
+        android:name="com.example.feb.ui.home.logs.QuoteLogsAsList"
+        android:label="QuoteLogsAsList"
+        tools:layout="@layout/fragment_quote_logs_as_list"
+        >
+        <action
+            android:id="@+id/action_quoteLogsAsList_to_modifyLog"
+            app:destination="@id/modifyLog" />
+        <action
+            android:id="@+id/action_quoteLogsAsList_to_quoteLogsAsPage2"
+            app:destination="@id/quoteLogsAsPage"
+            app:popUpTo="@id/quoteLogsAsList"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
