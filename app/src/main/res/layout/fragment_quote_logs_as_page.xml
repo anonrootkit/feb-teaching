@@ -5,14 +5,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.logs.QuoteLogs">
+        tools:context=".ui.home.logs.QuoteLogsAsList">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="0dp"
             style="@style/CONSTRAINT_MATCH_PARENT"
             tools:ignore="MissingConstraints"
-            android:id="@+id/logs_list" />
+            android:id="@+id/logs_list"
+            tools:listitem="@layout/list_item_quote_log_page"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
