@@ -15,7 +15,11 @@ import com.example.feb.ui.viewmodels.QuoteViewModel
 import com.example.feb.utils.getRandomColor
 import com.example.feb.utils.getRandomQuote
 
-class Quotes : Fragment(R.layout.fragment_quotes) {
+class Quotes private constructor() : Fragment(R.layout.fragment_quotes) {
+
+    companion object{
+        fun getInstance() = Quotes()
+    }
 
     private lateinit var binding : FragmentQuotesBinding
     private lateinit var quotesViewModel: QuoteViewModel
@@ -31,14 +35,7 @@ class Quotes : Fragment(R.layout.fragment_quotes) {
 
         binding.changeQuote.setOnClickListener { changeQuoteAndBgColor() }
 
-        binding.headerTitle.setOnLongClickListener { navigateToQuoteLogs() }
-
         changeQuoteAndBgColor()
-    }
-
-    private fun navigateToQuoteLogs() : Boolean {
-        findNavController().navigate(R.id.action_quotes_to_quoteLogsContainer)
-        return true
     }
 
     private fun changeQuoteAndBgColor() {

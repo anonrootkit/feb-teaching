@@ -9,7 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.feb.R
 import com.example.feb.databinding.FragmentQuoteLogsContainerBinding
 
-class QuoteLogsContainer : Fragment(R.layout.fragment_quote_logs_container) {
+class QuoteLogsContainer private constructor(): Fragment(R.layout.fragment_quote_logs_container) {
+
+    companion object{
+        fun getInstance() = QuoteLogsContainer()
+    }
 
     private lateinit var binding : FragmentQuoteLogsContainerBinding
     private var isLogsListVisible = true
