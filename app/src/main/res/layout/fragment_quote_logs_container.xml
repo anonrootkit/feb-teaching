@@ -52,6 +52,5 @@
             android:id="@+id/log_screen_container"
             />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

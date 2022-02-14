@@ -15,7 +15,7 @@ import com.example.feb.ui.viewmodels.QuoteViewModel
 import com.example.feb.utils.getRandomColor
 import com.example.feb.utils.getRandomQuote
 
-class Quotes private constructor() : Fragment(R.layout.fragment_quotes) {
+class Quotes constructor() : Fragment(R.layout.fragment_quotes) {
 
     companion object{
         fun getInstance() = Quotes()

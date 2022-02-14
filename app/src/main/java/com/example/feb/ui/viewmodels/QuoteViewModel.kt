@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.feb.data.db.entities.QuoteLog
 import com.example.feb.domain.repo.QuoteLogsRepository
+import com.example.feb.utils.LogsListMode
 import kotlinx.coroutines.launch
 
 class QuoteViewModel(
@@ -26,6 +27,10 @@ class QuoteViewModel(
     }
 
     fun getLogs() = quoteLogsRepository.getLogs()
+
+    fun setLogsListMode(mode : LogsListMode) = quoteLogsRepository.setLogsListMode(mode)
+
+    fun getLogsListMode() = quoteLogsRepository.getLogsListMode()
 
 
     class Factory(private val quoteLogsRepository: QuoteLogsRepository)

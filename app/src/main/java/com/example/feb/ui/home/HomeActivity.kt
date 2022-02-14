@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.feb.databinding.ActivityHomeBinding
 import com.example.feb.ui.home.logs.QuoteLogsContainer
 import com.example.feb.ui.home.quote.Quotes
+import com.example.feb.ui.home.temp.Temporary
 import com.example.feb.utils.transformers.CubeInTransformer
 import com.example.feb.utils.transformers.DepthPageTransformer
 import com.example.feb.utils.transformers.ZoomOutTransformer
@@ -21,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
         HomePagerAdapter(
             fragmentManager = supportFragmentManager,
             lifecycle =  lifecycle,
-            fragments = listOf(Quotes.getInstance(), QuoteLogsContainer.getInstance())
+            fragments = listOf(Quotes.getInstance(), Temporary.get())
         )
     }
 
@@ -31,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        makeActivityFullScreen()
+//        makeActivityFullScreen()
 
         setUpViewPager()
     }
