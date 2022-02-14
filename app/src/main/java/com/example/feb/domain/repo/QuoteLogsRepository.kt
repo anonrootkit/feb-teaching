@@ -1,17 +1,24 @@
 package com.example.feb.domain.repo
 
 import android.content.Context
-import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.feb.data.db.AppDatabase
 import com.example.feb.data.db.entities.QuoteLog
-import com.example.feb.data.preferences.PreferenceStorage
 import com.example.feb.utils.LogsListMode
 import com.example.feb.utils.PreferenceConstants
+import com.example.feb.utils.dataStore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class QuoteLogsRepository(
     private val database: AppDatabase,
-    private val sharedPreferences: SharedPreferences
+    private val dataStore: DataStore<Preferences>
 ) {
+
+    private val logsListModePrefKey = stringPreferencesKey(PreferenceConstants.LOGS_LIST_MODE)
 
     companion object {
         private var instance : QuoteLogsRepository? = null
@@ -20,7 +27,7 @@ class QuoteLogsRepository(
             return instance ?: synchronized(this) {
                 instance = QuoteLogsRepository(
                     database = AppDatabase.getDatabase(context),
-                    sharedPreferences = PreferenceStorage.getPreferences(context)
+                    dataStore = context.dataStore
                 )
 
                 instance!!
@@ -40,12 +47,15 @@ class QuoteLogsRepository(
 
     suspend fun deleteLogs() = database.quoteLogsDao().deleteQuoteLogs()
 
-    fun setLogsListMode(listMode : LogsListMode) {
-        sharedPreferences.edit().putString(PreferenceConstants.LOGS_LIST_MODE, listMode.name).apply()
+    suspend fun setLogsListMode(listMode : LogsListMode) {
+        dataStore.edit {
+            it[logsListModePrefKey] = listMode.name
+        }
     }
 
-    fun getLogsListMode() : LogsListMode {
-        val mode = sharedPreferences.getString(PreferenceConstants.LOGS_LIST_MODE, null)
-        return if (mode == null) LogsListMode.PAGE else LogsListMode.valueOf(mode)
-    }
+    val logsListModeType: Flow<LogsListMode> = dataStore.data
+        .map { preferences ->
+            preferences[logsListModePrefKey]?.let { LogsListMode.valueOf(it) }
+                ?: LogsListMode.PAGE
+        }
 }

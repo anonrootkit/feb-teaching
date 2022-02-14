@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import com.example.feb.domain.repo.QuoteLogsRepository
 import com.example.feb.ui.viewmodels.QuoteViewModel
 import com.example.feb.utils.LogsListMode
 import com.example.feb.utils.safeNavigate
+import kotlinx.coroutines.flow.collect
 
 class QuoteLogsContainer private constructor(): Fragment(R.layout.fragment_quote_logs_container) {
 
@@ -38,14 +40,14 @@ class QuoteLogsContainer private constructor(): Fragment(R.layout.fragment_quote
         binding.toggleLogScreens.setOnClickListener {
             changeLogScreen()
         }
-    }
 
-    override fun onStart() {
-        super.onStart()
-
-        when(quoteViewModel.getLogsListMode()) {
-            LogsListMode.LIST -> changeToList()
-            LogsListMode.PAGE -> changeToPage()
+        lifecycleScope.launchWhenStarted {
+            quoteViewModel.logsListMode.collect {
+                when(it) {
+                    LogsListMode.LIST -> changeToList()
+                    LogsListMode.PAGE -> changeToPage()
+                }
+            }
         }
     }
 

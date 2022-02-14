@@ -28,10 +28,13 @@ class QuoteViewModel(
 
     fun getLogs() = quoteLogsRepository.getLogs()
 
-    fun setLogsListMode(mode : LogsListMode) = quoteLogsRepository.setLogsListMode(mode)
+    fun setLogsListMode(mode : LogsListMode) {
+        viewModelScope.launch {
+            quoteLogsRepository.setLogsListMode(mode)
+        }
+    }
 
-    fun getLogsListMode() = quoteLogsRepository.getLogsListMode()
-
+    val logsListMode = quoteLogsRepository.logsListModeType
 
     class Factory(private val quoteLogsRepository: QuoteLogsRepository)
         : ViewModelProvider.Factory {

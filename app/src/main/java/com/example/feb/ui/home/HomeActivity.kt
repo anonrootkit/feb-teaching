@@ -22,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
         HomePagerAdapter(
             fragmentManager = supportFragmentManager,
             lifecycle =  lifecycle,
-            fragments = listOf(Quotes.getInstance(), Temporary.get())
+            fragments = listOf(Quotes.getInstance(), QuoteLogsContainer.getInstance())
         )
     }
 
